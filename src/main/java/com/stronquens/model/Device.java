@@ -11,7 +11,7 @@ package com.stronquens.model;
  */
 public class Device {
 
-    private int id;
+    private String id;
     private String name;
     private String type;
     private String description;
@@ -19,7 +19,7 @@ public class Device {
     public Device() {
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -35,7 +35,7 @@ public class Device {
         return description;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -1,60 +1,32 @@
 
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 80%;
-    background-color: #1f1f1f;
+body{
+    width: 100%;
+    overflow-x: hidden;
+    background-color: #e5e5e5;
 }
-
-#wrapper {
-    width: 960px;
-    margin: auto;
-    text-align: left;
-    color: #d9d9d9;
-}
-
-p {
-    text-align: left;
-}
-
-.button {
-    display: inline;
-    color: #fff;
-    background-color: #f2791d;
-    padding: 8px;
-    margin: auto;
-    border-radius: 8px;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
-    box-shadow: none;
-    border: none;
-}
-
-.button:hover {
-    background-color: #ffb15e;
-}
-.button a, a:visited, a:hover, a:active {
-    color: #fff;
-    text-decoration: none;
-}
-
-#addDevice {
+h1 {
     text-align: center;
-    width: 960px;
-    margin: auto;
-    margin-bottom: 10px;
+    font-family: 'Playfair Display', serif;
+    color: #ff8484;
+    font-size: 4em;
 }
 
-#addDeviceForm {
-    text-align: left;
-    width: 400px;
-    margin: auto;
-    padding: 10px;
+#createRoom {
+    margin-left: 40%;
+    width: 20%;
+    height: 50px;
+    border-radius: 50px;
+    background-color: white;
+    font-size: 1em;
+    font-weight: bold;
+    color: grey;
+    border-style: dashed;
+    border-color: black;
 }
-
-#addDeviceForm span {
-    display: block;
+#createRoom:active { 
+    background-color: lightgrey;
 }
+#createRoom:focus {outline:0;}
 
 #content {
     margin: auto;

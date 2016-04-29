@@ -45,14 +45,12 @@ public class DeviceSessionHandler {
     }
 
     public void addDevice(Device device) {
-        device.setId(deviceId);
         devices.add(device);
-        deviceId++;
         JsonObject addMessage = createAddMessage(device);
         sendToAllConnectedSessions(addMessage);
     }
 
-    public void removeDevice(int id) {
+    public void removeDevice(String id) {
         Device device = getDeviceById(id);
         if (device != null) {
             devices.remove(device);
@@ -65,9 +63,9 @@ public class DeviceSessionHandler {
         }
     }
 
-    private Device getDeviceById(int id) {
+    private Device getDeviceById(String id) {
         for (Device device : devices) {
-            if (device.getId() == id) {
+            if (device.getId().equalsIgnoreCase(id)) {
                 return device;
             }
         }

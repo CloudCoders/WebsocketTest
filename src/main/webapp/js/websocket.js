@@ -1,7 +1,13 @@
 
-var socket = new WebSocket("ws://" + window.location.host + "/WebsocketQuiz/actions");
-socket.onmessage = onMessage;
-socket.onopen = addDevice;
+var socket = null;
+
+function createConection() {
+    if (socket === null) {
+        socket = new WebSocket("ws://" + window.location.host + "/WebsocketQuiz/actions");
+        socket.onmessage = onMessage;
+        socket.onopen = addDevice;
+    }
+}
 
 function onMessage(event) {
     var device = JSON.parse(event.data);
@@ -10,7 +16,6 @@ function onMessage(event) {
     }
     if (device.action === "remove") {
         document.getElementById(device.id).remove();
-        //device.parentNode.removeChild(device);
     }
 }
 function addDevice() {
@@ -58,7 +63,7 @@ function printDeviceElement(device) {
 
     var removeDevice = document.createElement("span");
     removeDevice.setAttribute("class", "removeDevice");
-    removeDevice.innerHTML = "<a href=\"#\" OnClick=removeDevice(" + device.id + ")>Remove device</a>";
+    removeDevice.innerHTML = "<a href=\"#\" OnClick=removeDevice('" + device.id + "')>Remove device</a>";
     deviceDiv.appendChild(removeDevice);
 }
 

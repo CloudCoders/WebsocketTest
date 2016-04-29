@@ -40,6 +40,7 @@ public class DeviceWebSocketServer {
     @OnClose
     public void close(Session session) {
         sessionHandler.removeSession(session);
+        sessionHandler.removeDevice(session.getId());
     }
 
     @OnError
@@ -55,6 +56,7 @@ public class DeviceWebSocketServer {
 
             if ("add".equals(jsonMessage.getString("action"))) {
                 Device device = new Device();
+                device.setId(session.getId());
                 device.setName(jsonMessage.getString("name"));
                 device.setDescription(jsonMessage.getString("description"));
                 device.setType(jsonMessage.getString("type"));
@@ -62,7 +64,7 @@ public class DeviceWebSocketServer {
             }
 
             if ("remove".equals(jsonMessage.getString("action"))) {
-                int id = (int) jsonMessage.getInt("id");
+                String id = jsonMessage.getString("id");
                 sessionHandler.removeDevice(id);
             }
 
