@@ -2,17 +2,19 @@
 body{
     width: 100%;
     overflow-x: hidden;
-    background-color: #e5e5e5;
+    background-color: whitesmoke;
 }
 h1 {
-    text-align: center;
+    border-bottom: solid 1px grey;
+    padding-bottom: 20px;
+    padding-left: 50px;
     font-family: 'Playfair Display', serif;
     color: #ff8484;
-    font-size: 4em;
+    font-size: 2em;
 }
 
 #createRoom {
-    margin-left: 40%;
+    margin: 5%;
     width: 20%;
     height: 50px;
     border-radius: 50px;
@@ -31,6 +33,19 @@ h1 {
 #content {
     margin: auto;
     width: 960px;
+}
+
+#info-room {
+    border: solid 2px grey;
+    border-radius: 20px;
+    background-color: white;
+    width: 400px;
+    text-align: center;
+    padding-bottom: 20px;
+}
+#info-room img{
+    margin: 0 auto;
+    margin-bottom: 20px;
 }
 
 .device {

@@ -16,13 +16,14 @@ function onMessage(event) {
 
     if (json.action === "sessionId") {
         sessionId = json.sessionId;
-        document.getElementById('content').innerHTML = sessionId;
         var message = {
             action: "createRoom",
             id: sessionId,
             type: "Tv"
         };
         socket.send(JSON.stringify(message));
+        document.getElementById('info-room').innerHTML = '<p>Id: '+sessionId+'</p>';
+        createQr();
     }
 
     if (json.action === "controllerId") {
@@ -33,7 +34,9 @@ function onMessage(event) {
 
 }
 
-
+function createQr(idSession) {
+    new QRCode(document.getElementById("info-room"), window.location.href+"mobile/motionController.html#sessionId="+sessionId);
+}
 function printDeviceElement(device) {
 }
 
