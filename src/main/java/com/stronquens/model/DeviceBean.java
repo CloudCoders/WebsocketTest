@@ -9,14 +9,14 @@ package com.stronquens.model;
  *
  * @author stronquens
  */
-public class Device {
+public class DeviceBean {
 
     private String id;
     private String name;
     private String type;
     private String description;
 
-    public Device() {
+    public DeviceBean() {
     }
 
     public String getId() {

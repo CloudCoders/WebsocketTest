@@ -5,11 +5,7 @@
  */
 package com.stronquens.websocket;
 
-/**
- *
- * @author stronquens
- */
-import com.stronquens.handlers.DeviceSessionHandler;
+import com.stronquens.handlers.RoomSessionHandler;
 import com.stronquens.model.DeviceBean;
 import java.io.StringReader;
 import java.util.logging.Level;
@@ -26,22 +22,25 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
+/**
+ *
+ * @author stronquens
+ */
 @ApplicationScoped
-@ServerEndpoint("/actions")
-public class DeviceWebSocketServer {
+@ServerEndpoint("/rooms")
+public class RoomWebsocketServer {
 
     @Inject
-    private DeviceSessionHandler sessionHandler;
+    private RoomSessionHandler roomSessionHandler;
 
     @OnOpen
     public void open(Session session) {
-        sessionHandler.addSession(session);
+        roomSessionHandler.getIdSesion(session);
     }
 
     @OnClose
     public void close(Session session) {
-        sessionHandler.removeSession(session);
-        sessionHandler.removeDevice(session.getId());
+        roomSessionHandler.deleteRoom(session.getId());
     }
 
     @OnError
@@ -51,24 +50,16 @@ public class DeviceWebSocketServer {
 
     @OnMessage
     public void handleMessage(String message, Session session) {
-
         try (JsonReader reader = Json.createReader(new StringReader(message))) {
             JsonObject jsonMessage = reader.readObject();
 
-            if ("add".equals(jsonMessage.getString("action"))) {
-                DeviceBean device = new DeviceBean();
-                device.setId(session.getId());
-                device.setName(jsonMessage.getString("name"));
-                device.setDescription(jsonMessage.getString("description"));
-                device.setType(jsonMessage.getString("type"));
-                sessionHandler.addDevice(device);
+            if ("createRoom".equals(jsonMessage.getString("action"))) {
+                roomSessionHandler.createRoom(session);
             }
-
-            if ("remove".equals(jsonMessage.getString("action"))) {
-                String id = jsonMessage.getString("id");
-                sessionHandler.removeDevice(id);
+            
+            if ("joinRoom".equals(jsonMessage.getString("action"))) {
+                roomSessionHandler.addControllerToRoom(session, jsonMessage.getString("idRoom"));
             }
-
         }
     }
 }
