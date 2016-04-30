@@ -6,7 +6,6 @@
 package com.stronquens.websocket;
 
 import com.stronquens.handlers.RoomSessionHandler;
-import com.stronquens.model.DeviceBean;
 import java.io.StringReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;

@@ -33,6 +33,7 @@ public class RoomBean {
         JsonObject message = provider.createObjectBuilder()
                 .add("action", "controllerId")
                 .add("controllerId", session.getId())
+                .add("name", "Jugador"+controllers.size())
                 .build();
         sendToTv(message);
     }

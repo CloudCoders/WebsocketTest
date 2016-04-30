@@ -3,15 +3,47 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+var socket = null;
+var controllerId = null;
+var sessionIdTv = null;
 
+window.onload = getVarsUrl;
 
-function getVarsUrl(){
-    var url= location.search.replace("#", "");
-    var arrUrl = url.split("&");
-    var urlObj={};   
-    for(var i=0; i<arrUrl.length; i++){
-        var x= arrUrl[i].split("=");
-        urlObj[x[0]]=x[1]
+function createConection() {
+    if (socket === null) {
+        socket = new WebSocket("ws://" + window.location.host + "/WebsocketQuiz/rooms");
+        socket.onmessage = onMessage;
+        //socket.onopen = addDevice;
     }
-    return urlObj;
+}
+
+
+function onMessage(event) {
+    var json = JSON.parse(event.data);
+
+    if (json.action === "sessionId") {
+        controllerId = json.sessionId;
+        document.getElementById('session').innerHTML = '<p>Id: '+controllerId+'</p>';
+        var message = {
+            action: "joinRoom",
+            idRoom: sessionIdTv,
+            type: "Controller"
+        };
+        socket.send(JSON.stringify(message));
+    }
+}
+
+function getVarsUrl() {
+    var ur = window.location.href;
+    if (ur.indexOf('idsession') !== -1) {
+        //var verifier = "";
+        ur = ur.substring(ur.indexOf('?') + 1);
+        var urPartes = ur.split('&');
+        for (i = 0; i < urPartes.length; i++) {
+            if (urPartes[i].indexOf('idsession') !== -1) {
+                sessionIdTv = urPartes[i].split('=')[1];
+            }
+        }
+    }
+    createConection();
 }

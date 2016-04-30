@@ -1,7 +1,7 @@
 
 var socket = null;
 var sessionId = null;
-var controllersId = null;
+var controllers = [];
 
 function createConection() {
     if (socket === null) {
@@ -22,21 +22,31 @@ function onMessage(event) {
             type: "Tv"
         };
         socket.send(JSON.stringify(message));
-        document.getElementById('info-room').innerHTML = '<p>Id: '+sessionId+'</p>';
+        document.getElementById('info-room').innerHTML = '<p>Id: ' + sessionId + '</p>';
         createQr();
     }
-
     if (json.action === "controllerId") {
-        controllersId[controllersId.legth-1] = json.controllerId;
-        document.getElementById('content').innerHTML = controllerId;
-        //TODO
+        controllers[controllers.length] = json;
+        printDeviceElement(json);
     }
-
 }
 
-function createQr(idSession) {
-    new QRCode(document.getElementById("info-room"), window.location.href+"mobile/motionController.html#sessionId="+sessionId);
+function createQr() {
+    new QRCode(document.getElementById("info-room"), 
+    window.location.href + "mobile/motionController.html#sessionId=" + sessionId);
 }
+
 function printDeviceElement(device) {
+    var content = document.getElementById("devices");
+
+    var deviceDiv = document.createElement("div");
+    deviceDiv.setAttribute("id", device.controllerId);
+    deviceDiv.setAttribute("class", "smartphone");
+    content.appendChild(deviceDiv);
+
+    var deviceName = document.createElement("span");
+    deviceName.setAttribute("class", "name");
+    deviceName.innerHTML = device.name;
+    deviceDiv.appendChild(deviceName);
 }
 
