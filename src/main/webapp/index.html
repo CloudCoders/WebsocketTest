@@ -3,16 +3,22 @@
     <head>
         <title></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        
-        <script type="text/javascript" src="./js/websocket.js"></script>
-        
+
+        <!-- <script type="text/javascript" src="./js/websocket.js"></script>-->
+        <script type="text/javascript" src="./js/websocketRooms.js"></script>
+        <script type="text/javascript" src="./js/vendor/qrcode.min.js"></script>
+
         <link rel="stylesheet" type="text/css" href="./css/style.css">
         <link href='https://fonts.googleapis.com/css?family=Playfair+Display:900italic' rel='stylesheet' type='text/css'>
     </head>
     <body>
         <h1>Websocket Quiz!!!</h1><br/>
         <input type="button" id="createRoom" value="Crear Sala" onclick="createConection()"></input><br/>
-        <div id="content">
+        <div id="devices" >
+            <div class="smartphone">
+                <span>Jugador 1</span>
+            </div>
         </div>
+        <div id="info-room"></div>
     </body>
 </html>

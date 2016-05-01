@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.stronquens.websocket;
+package com.stronquens.handlers;
 
 /**
  *
@@ -12,7 +12,7 @@ package com.stronquens.websocket;
 import javax.enterprise.context.ApplicationScoped;
 import java.util.HashSet;
 import javax.websocket.Session;
-import com.stronquens.model.Device;
+import com.stronquens.model.DeviceBean;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,11 +26,11 @@ public class DeviceSessionHandler {
 
     private int deviceId = 0;
     private final HashSet<Session> sessions = new HashSet<Session>();
-    private final HashSet<Device> devices = new HashSet<Device>();
+    private final HashSet<DeviceBean> devices = new HashSet<DeviceBean>();
 
     public void addSession(Session session) {
         sessions.add(session);
-        for (Device device : devices) {
+        for (DeviceBean device : devices) {
             JsonObject addMessage = createAddMessage(device);
             sendToSession(session, addMessage);
         }
@@ -44,14 +44,14 @@ public class DeviceSessionHandler {
         return new ArrayList<>(devices);
     }
 
-    public void addDevice(Device device) {
+    public void addDevice(DeviceBean device) {
         devices.add(device);
         JsonObject addMessage = createAddMessage(device);
         sendToAllConnectedSessions(addMessage);
     }
 
     public void removeDevice(String id) {
-        Device device = getDeviceById(id);
+        DeviceBean device = getDeviceById(id);
         if (device != null) {
             devices.remove(device);
             JsonProvider provider = JsonProvider.provider();
@@ -63,8 +63,8 @@ public class DeviceSessionHandler {
         }
     }
 
-    private Device getDeviceById(String id) {
-        for (Device device : devices) {
+    private DeviceBean getDeviceById(String id) {
+        for (DeviceBean device : devices) {
             if (device.getId().equalsIgnoreCase(id)) {
                 return device;
             }
@@ -72,7 +72,7 @@ public class DeviceSessionHandler {
         return null;
     }
 
-    private JsonObject createAddMessage(Device device) {
+    private JsonObject createAddMessage(DeviceBean device) {
         JsonProvider provider = JsonProvider.provider();
         JsonObject addMessage = provider.createObjectBuilder()
                 .add("action", "add")

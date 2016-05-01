@@ -2,17 +2,19 @@
 body{
     width: 100%;
     overflow-x: hidden;
-    background-color: #e5e5e5;
+    background-color: whitesmoke;
 }
 h1 {
-    text-align: center;
+    border-bottom: solid 1px grey;
+    padding-bottom: 20px;
+    padding-left: 50px;
     font-family: 'Playfair Display', serif;
     color: #ff8484;
-    font-size: 4em;
+    font-size: 2em;
 }
 
 #createRoom {
-    margin-left: 40%;
+    margin: 5%;
     width: 20%;
     height: 50px;
     border-radius: 50px;
@@ -33,78 +35,28 @@ h1 {
     width: 960px;
 }
 
-.device {
-    width: 180px;
-    height: 110px;
-    margin: 10px;
-    padding: 16px;
-    color: #fff;
-    vertical-align: top;
-    border-radius: 8px;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
-    display: inline-block;
-}
-
-.device.off {
-    background-color: #c8cccf;
-}
-
-.device span {
-    display: block;
-}
-
-.deviceName {
+#info-room {
+    border: solid 2px grey;
+    border-radius: 20px;
+    background-color: white;
+    width: 400px;
     text-align: center;
-    font-weight: bold;
-    margin-bottom: 12px;
+    padding-bottom: 20px;
+}
+#info-room img{
+    margin: 0 auto;
+    margin-bottom: 20px;
 }
 
-.removeDevice {
-    margin-top: 12px;
+#devices {
+    margin-right: 20px;
+    float:right;
+    background-color: white;
+    border: solid 2px brown;
+}
+.smartphone {
+    width: 150px;
+    height: 200px;
+    background-color: yellow;
     text-align: center;
-}
-
-.device.BigDevice {
-    background-color: #5eb85e;
-}
-
-.device.BigDevice a:hover {
-    color: #a1ed82;
-}
-
-.device.Electronics {   
-    background-color: #0f90d1;
-}
-
-.device.Electronics a:hover {
-    color: #4badd1;
-}
-
-.device.Lights {
-    background-color: #c2a00c;
-}
-
-.device.Lights a:hover {
-    color: #fad232;
-}
-
-.device.Other {
-    background-color: #db524d;
-}
-
-.device.Other a:hover {
-    color: #ff907d;
-}
-
-.device a {
-    text-decoration: none;
-}
-
-.device a:visited, a:active, a:hover {
-    color: #fff;
-}
-
-.device a:hover {
-    text-decoration: underline;
 }
