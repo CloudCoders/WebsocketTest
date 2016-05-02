@@ -1,5 +1,9 @@
 # WebsocketQuiz
 Experimental web game using smartphones as a remote control
+<h2>Objetivo primera version</h2>
+<p>
+Mostrar en tiempo real la pulsacion de botones de los mandos en una sala.
+</p>
 
 <h2>Prerrequisitos</h2>
 <p>
