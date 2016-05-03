@@ -32,8 +32,8 @@ function onMessage(event) {
 }
 
 function createQr() {
-    new QRCode(document.getElementById("info-room"), 
-    window.location.href + "mobile/motionController.html#sessionId=" + sessionId);
+    new QRCode(document.getElementById("info-room"),
+            window.location.href + "mobile/motionController.html#sessionId=" + sessionId);
 }
 
 function printDeviceElement(device) {
@@ -48,5 +48,30 @@ function printDeviceElement(device) {
     deviceName.setAttribute("class", "name");
     deviceName.innerHTML = device.name;
     deviceDiv.appendChild(deviceName);
+
+    var circleButton = document.createElement("input");
+    circleButton.setAttribute("type", "button");
+    circleButton.setAttribute("class", "circle");
+    deviceDiv.appendChild(circleButton);
+
+    var redButton = document.createElement("input");
+    redButton.setAttribute("type", "button");
+    redButton.setAttribute("class", "answer-option red");
+    deviceDiv.appendChild(redButton);
+
+    var greenButton = document.createElement("input");
+    greenButton.setAttribute("type", "button");
+    greenButton.setAttribute("class", "answer-option green");
+    deviceDiv.appendChild(greenButton);
+
+    var blueButton = document.createElement("input");
+    blueButton.setAttribute("type", "button");
+    blueButton.setAttribute("class", "answer-option blue");
+    deviceDiv.appendChild(blueButton);
+
+    var yellowButton = document.createElement("input");
+    yellowButton.setAttribute("type", "button");
+    yellowButton.setAttribute("class", "answer-option yellow");
+    deviceDiv.appendChild(yellowButton);
 }
 

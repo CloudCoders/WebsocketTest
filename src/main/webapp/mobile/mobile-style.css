@@ -14,7 +14,6 @@ body {
     height: 100%;
     overflow: hidden;
 }
-#name {}
 input:focus {outline:0;}
 input:active { 
     opacity: 0.5;
@@ -35,15 +34,7 @@ input:active {
     border: solid 1px black;
     border-radius: 50px;
 }
-#red {
-    background-color: #eb2e2c;
-}
-#green {
-    background-color: #6ea868;
-}
-#blue {
-    background-color: #8282ff;
-}
-#yellow {
-    background-color: #ffff99;
-}
+.red {background-color: red;}
+.green {background-color: green;}
+.blue {background-color: blue;}
+.yellow {background-color: yellow;}

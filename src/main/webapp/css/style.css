@@ -47,16 +47,39 @@ h1 {
     margin: 0 auto;
     margin-bottom: 20px;
 }
-
+/* Mobiles */
 #devices {
-    margin-right: 20px;
-    float:right;
-    background-color: white;
-    border: solid 2px brown;
+    margin: 20px;
 }
 .smartphone {
-    width: 150px;
-    height: 200px;
-    background-color: yellow;
+    margin: 20px;
+    width: 200px;
+    height: 320px;
+    float: right;
+    background-color: lightgrey;
     text-align: center;
+    border: solid 2px black;
+    border-radius: 10px;
 }
+input:focus {outline:0;}
+input:active { 
+    opacity: 0.5;
+}
+.circle {
+    margin: 5% 25%;
+    width: 85px;
+    height: 85px;
+    background-color: red;
+    border-radius: 50px;
+}
+.answer-option{
+    width: 80%;
+    height: 10%;
+    margin: 3% 10%;
+    border: solid 1px black;
+    border-radius: 50px;
+}
+.red {background-color: red;}
+.green {background-color: green;}
+.blue {background-color: blue;}
+.yellow {background-color: yellow;}
