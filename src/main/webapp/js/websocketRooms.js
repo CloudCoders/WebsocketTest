@@ -33,7 +33,7 @@ function onMessage(event) {
 
 function createQr() {
     new QRCode(document.getElementById("info-room"),
-            window.location.href + "mobile/motionController.html#sessionId=" + sessionId);
+            window.location.href + "mobile/motionController.html#sessionid=" + sessionId);
 }
 
 function printDeviceElement(device) {

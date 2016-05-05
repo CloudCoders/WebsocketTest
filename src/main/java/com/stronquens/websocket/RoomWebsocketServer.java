@@ -57,7 +57,8 @@ public class RoomWebsocketServer {
             }
             
             if ("joinRoom".equals(jsonMessage.getString("action"))) {
-                roomSessionHandler.addControllerToRoom(session, jsonMessage.getString("idRoom"));
+                String idroom = jsonMessage.getString("idRoom");
+                roomSessionHandler.addControllerToRoom(session, idroom);
             }
         }
     }

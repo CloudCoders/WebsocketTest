@@ -35,12 +35,12 @@ function onMessage(event) {
 
 function getVarsUrl() {
     var ur = window.location.href;
-    if (ur.indexOf('idsession') !== -1) {
+    if (ur.indexOf('sessionid') !== -1) {
         //var verifier = "";
         ur = ur.substring(ur.indexOf('?') + 1);
         var urPartes = ur.split('&');
         for (i = 0; i < urPartes.length; i++) {
-            if (urPartes[i].indexOf('idsession') !== -1) {
+            if (urPartes[i].indexOf('sessionid') !== -1) {
                 sessionIdTv = urPartes[i].split('=')[1];
             }
         }
