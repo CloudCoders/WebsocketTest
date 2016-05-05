@@ -5,7 +5,6 @@
  */
 package com.stronquens.model;
 
-import com.stronquens.handlers.DeviceSessionHandler;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -61,7 +60,7 @@ public class RoomBean {
         try {
             tv.getBasicRemote().sendText(message.toString());
         } catch (IOException ex) {
-            Logger.getLogger(DeviceSessionHandler.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RoomBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

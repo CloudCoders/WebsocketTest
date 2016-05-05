@@ -4,7 +4,7 @@
         <title></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-        <!-- <script type="text/javascript" src="./js/websocket.js"></script>-->
+        <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
         <script type="text/javascript" src="./js/websocketRooms.js"></script>
         <script type="text/javascript" src="./js/vendor/qrcode.min.js"></script>
 
@@ -14,17 +14,17 @@
     <body>
         <h1>Websocket Quiz!!!</h1><br/>
         <input type="button" id="createRoom" value="Crear Sala" onclick="createConection()"></input><br/>
-        <div id="info-room"></div>
         <div id="devices" >
             <!-- Prueba de estilos css -->
-            <div class="smartphone">
+            <!-- <div class="smartphone">
                 <span>Jugador Prueba</span>
-                <input class="circle" type="button"></input>
-                <input class="answer-option red" type="button"></input>
-                <input class="answer-option green" type="button"></input>
-                <input class="answer-option blue" type="button"></input>
-                <input class="answer-option yellow" type="button"></input>
-            </div>
+                <input class="circle" disabled="true" type="button"></input>
+                <input class="answer-option red" disabled="true" type="button"></input>
+                <input class="answer-option green" disabled="true" type="button"></input>
+                <input class="answer-option blue" disabled="true" type="button"></input>
+                <input class="answer-option yellow" disabled="true" type="button"></input>
+            </div>-->
         </div>
+        <div id="info-room"></div>
     </body>
 </html>

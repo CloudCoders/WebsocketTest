@@ -24,7 +24,6 @@ public class RoomSessionHandler {
 
     private final HashMap<String, RoomBean> rooms = new HashMap<String, RoomBean>();
     private JsonProvider provider = JsonProvider.provider();
-    
 
     public void createRoom(Session session) {
         rooms.put(session.getId(), new RoomBean(session));
@@ -50,12 +49,22 @@ public class RoomSessionHandler {
         sendToSession(session, message);
     }
 
+    public void sendEventToRoom(String idController, String idRoom, String button) {
+        Session tv = rooms.get(idRoom).getTv();
+        JsonObject message = provider.createObjectBuilder()
+                .add("action", "buttonPressed")
+                .add("sessionId", idController)
+                .add("button", button)
+                .build();
+        sendToSession(tv,message);
+    }
+
     private void sendToSession(Session session, JsonObject message) {
         try {
             session.getBasicRemote().sendText(message.toString());
         } catch (IOException ex) {
             //sessions.remove(session);
-            Logger.getLogger(DeviceSessionHandler.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RoomSessionHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

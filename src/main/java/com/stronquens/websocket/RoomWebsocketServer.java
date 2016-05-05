@@ -44,7 +44,7 @@ public class RoomWebsocketServer {
 
     @OnError
     public void onError(Throwable error) {
-        Logger.getLogger(DeviceWebSocketServer.class.getName()).log(Level.SEVERE, null, error);
+        Logger.getLogger(RoomWebsocketServer.class.getName()).log(Level.SEVERE, null, error);
     }
 
     @OnMessage
@@ -55,9 +55,16 @@ public class RoomWebsocketServer {
             if ("createRoom".equals(jsonMessage.getString("action"))) {
                 roomSessionHandler.createRoom(session);
             }
-            
+
             if ("joinRoom".equals(jsonMessage.getString("action"))) {
-                roomSessionHandler.addControllerToRoom(session, jsonMessage.getString("idRoom"));
+                String idRoom = jsonMessage.getString("idRoom");
+                roomSessionHandler.addControllerToRoom(session, idRoom);
+            }
+
+            if ("buttonPressed".equals(jsonMessage.getString("action"))) {
+                String idRoom = jsonMessage.getString("idRoom");
+                String button = jsonMessage.getString("button");
+                roomSessionHandler.sendEventToRoom(session.getId(), idRoom, button);
             }
         }
     }

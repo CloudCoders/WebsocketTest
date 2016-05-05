@@ -13,7 +13,6 @@ function createConection() {
     if (socket === null) {
         socket = new WebSocket("ws://" + window.location.host + "/WebsocketQuiz/rooms");
         socket.onmessage = onMessage;
-        //socket.onopen = addDevice;
     }
 }
 
@@ -23,7 +22,7 @@ function onMessage(event) {
 
     if (json.action === "sessionId") {
         controllerId = json.sessionId;
-        document.getElementById('session').innerHTML = '<p>Id: '+controllerId+'</p>';
+        document.getElementById('session').innerHTML = '<p>Id: ' + controllerId + '</p>';
         var message = {
             action: "joinRoom",
             idRoom: sessionIdTv,
@@ -35,15 +34,25 @@ function onMessage(event) {
 
 function getVarsUrl() {
     var ur = window.location.href;
-    if (ur.indexOf('idsession') !== -1) {
+    if (ur.indexOf('sessionid') !== -1) {
         //var verifier = "";
         ur = ur.substring(ur.indexOf('?') + 1);
         var urPartes = ur.split('&');
         for (i = 0; i < urPartes.length; i++) {
-            if (urPartes[i].indexOf('idsession') !== -1) {
+            if (urPartes[i].indexOf('sessionid') !== -1) {
                 sessionIdTv = urPartes[i].split('=')[1];
             }
         }
     }
     createConection();
+}
+
+function sendButonPresed(button) {
+    var message = {
+        action: "buttonPressed",
+        idRoom: sessionIdTv,
+        button: button,
+        type: "Controller"
+    };
+    socket.send(JSON.stringify(message));
 }
