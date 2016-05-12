@@ -31,7 +31,7 @@ Mostrar en tiempo real la pulsacion de botones de los mandos en una sala.
 <li> Cuando se obtenga el idSession de la tv y del controlador enviar una peticion con el siguiente JSON para
 unirse a la sala correspondiente.<br/>
 {"action": "joinRoom", "idRoom": variable (sessionIdTv), "type": "Controller"}</li>
-<li> Cada vez que se pulse un boton enviar el siguiente JSON:<br/>
+<li> Cada vez que se pulse un boton, enviar el siguiente JSON:<br/>
 {"action": "buttonPressed", "idRoom": variable (sessionIdTv), "button": variable (button), "type": "Controller"}<br/>
 La variable button tomara los siguientes valores segun el boton pulsado: 'circle', 'red', 'green', 'blue', 'yellow'.</li>
 </ol>
