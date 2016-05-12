@@ -23,16 +23,18 @@ Mostrar en tiempo real la pulsacion de botones de los mandos en una sala.
 </p>
 <h2>Conf Cliente</h2>
 <p>
-1) Escanear el codigo Qr y obtener el idSession de la tv<br/>
-2) Crear Websocket: new WebSocket("ws://websocketquiz-armandomg.rhcloud.com:8000/WebsocketQuiz/rooms")<br/>
-3) Nada mas iniciar la conexion se recibira un json con id de la sesion del controlador: <br/>
-{"action":"sessionId", "sessionId": **** }<br/>
-4) Cuando se obtenga el idSession de la tv y del controlador enviar una peticion con el siguiente JSON para
+<ol>
+<li>Escanear el codigo Qr y obtener el idSession de la tv.</li>
+<li>Crear Websocket: new WebSocket("ws://websocketquiz-armandomg.rhcloud.com:8000/WebsocketQuiz/rooms")</li>
+<li> Nada mas iniciar la conexion se recibira un json con id de la sesion del controlador: <br/>
+{"action":"sessionId", "sessionId": **** }</li>
+<li> Cuando se obtenga el idSession de la tv y del controlador enviar una peticion con el siguiente JSON para
 unirse a la sala correspondiente.<br/>
-{"action": "joinRoom", "idRoom": variable (sessionIdTv), "type": "Controller"}<br/>
-5) Cada vez que se pulse un boton enviar el siguiente JSON:<br/>
+{"action": "joinRoom", "idRoom": variable (sessionIdTv), "type": "Controller"}</li>
+<li> Cada vez que se pulse un boton enviar el siguiente JSON:<br/>
 {"action": "buttonPressed", "idRoom": variable (sessionIdTv), "button": variable (button), "type": "Controller"}<br/>
-La variable button tomara los siguientes valores segun el boton pulsado: 'circle', 'red', 'green', 'blue', 'yellow'
+La variable button tomara los siguientes valores segun el boton pulsado: 'circle', 'red', 'green', 'blue', 'yellow'.</li>
+</ol>
 </p>
 
 
