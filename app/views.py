@@ -1,6 +1,7 @@
 from app import app, socketio
-from flask import render_template, flash, redirect, request, session
-from flask_socketio import emit, join_room, leave_room, rooms
+
+from flask import render_template, request
+from flask_socketio import join_room, emit, leave_room, rooms
 
 import random
 import json
@@ -23,10 +24,11 @@ def newgamePost():
 def game(room):
     return render_template('game.html')
 
-@socketio.on('join')
+
+@socketio.on('joinRoom')
 def on_join(data):
-    print("Someone is joining " + data['room'])
-    room = data['room']
+    print("Someone is joining " + data['idRoom'])
+    room = data['idRoom']
 
     users[request.sid] = room
 
@@ -64,3 +66,8 @@ def game_disconnect():
     leave_room(room)
     rooms[room] = rooms[room]-1
     emit('roomStatus', rooms[room], room=room)
+
+
+@socketio.on('buttonPressed')
+def on_answer(data):
+    print("{} pressed button {}".format(request.sid, data['button']))
