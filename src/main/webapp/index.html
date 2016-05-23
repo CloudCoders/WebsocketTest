@@ -3,17 +3,34 @@
     <head>
         <title></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <!-- Dependencys -->
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
 
         <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
-        <script type="text/javascript" src="./js/websocketRooms.js"></script>
         <script type="text/javascript" src="./js/vendor/qrcode.min.js"></script>
+        <script type="text/javascript" src="js/vendor/materialize.min.js"></script>
+
+        <!-- My Documents -->
+        <script type="text/javascript" src="./js/websocketRooms.js"></script>
 
         <link rel="stylesheet" type="text/css" href="./css/style.css">
-        <link href='https://fonts.googleapis.com/css?family=Playfair+Display:900italic' rel='stylesheet' type='text/css'>
+
     </head>
     <body>
-        <h1>Websocket Quiz!!!</h1><br/>
-        <input type="button" id="createRoom" value="Crear Sala" onclick="createConection()"></input><br/>
+        <nav>
+            <div class="nav-wrapper blue">
+                <a href="#" class="brand-logo center"><i class="material-icons left">phonelink_ring</i>Websocket Quiz!!!</a>
+            </div>
+        </nav> 
+
+
+        <div class="row">
+            <a type="button" id="createRoom" class="waves-effect waves-light btn-large blue accent-2 col s2 offset-s1" 
+               onclick="createConection()"><i class="material-icons left">power_settings_new</i>Crear Sala</a><br/>
+        </div>
+
         <div id="devices" >
             <!-- Prueba de estilos css -->
             <!-- <div class="smartphone">
@@ -25,6 +42,10 @@
                 <input class="answer-option yellow" disabled="true" type="button"></input>
             </div>-->
         </div>
-        <div id="info-room"></div>
+        <div class="row">
+            <div  class="card-panel col s4 offset-s1">
+                <div id="info-room"></div>
+            </div>
+        </div>
     </body>
 </html>

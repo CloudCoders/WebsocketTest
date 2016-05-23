@@ -8,7 +8,6 @@ function createConection() {
         socket = new WebSocket("ws://" + window.location.host + "/WebsocketQuiz/rooms");
         //socket = new WebSocket("ws://" + window.location.host + ":8000/WebsocketQuiz/rooms");
         socket.onmessage = onMessage;
-        //socket.onopen = addDevice;
     }
 }
 

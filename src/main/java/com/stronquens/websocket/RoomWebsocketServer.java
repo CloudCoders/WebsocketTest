@@ -6,6 +6,7 @@
 package com.stronquens.websocket;
 
 import com.stronquens.handlers.RoomSessionHandler;
+import com.stronquens.routes.ParamRoutes;
 import java.io.StringReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,16 +31,16 @@ import javax.websocket.server.ServerEndpoint;
 public class RoomWebsocketServer {
 
     @Inject
-    private RoomSessionHandler roomSessionHandler;
+    private ParamRoutes paramRoutes;
 
     @OnOpen
     public void open(Session session) {
-        roomSessionHandler.getIdSesion(session);
+        paramRoutes.execute("{\"action\":\"idSession\"}", session);
     }
 
     @OnClose
     public void close(Session session) {
-        roomSessionHandler.deleteRoom(session.getId());
+        paramRoutes.execute("{\"action\":\"desconnect\"}", session);
     }
 
     @OnError
@@ -49,23 +50,6 @@ public class RoomWebsocketServer {
 
     @OnMessage
     public void handleMessage(String message, Session session) {
-        try (JsonReader reader = Json.createReader(new StringReader(message))) {
-            JsonObject jsonMessage = reader.readObject();
-
-            if ("createRoom".equals(jsonMessage.getString("action"))) {
-                roomSessionHandler.createRoom(session);
-            }
-
-            if ("joinRoom".equals(jsonMessage.getString("action"))) {
-                String idRoom = jsonMessage.getString("idRoom");
-                roomSessionHandler.addControllerToRoom(session, idRoom);
-            }
-
-            if ("buttonPressed".equals(jsonMessage.getString("action"))) {
-                String idRoom = jsonMessage.getString("idRoom");
-                String button = jsonMessage.getString("button");
-                roomSessionHandler.sendEventToRoom(session.getId(), idRoom, button);
-            }
-        }
+        paramRoutes.execute(message, session);
     }
 }
