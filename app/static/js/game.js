@@ -23,13 +23,10 @@ socket.on('roomStatus', function(data) {
     document.getElementById('users').innerHTML = "Usuarios conectados:" + data;
 });
 
-socket.on('starting', function(data) {
-    document.getElementById('users').innerHTML = data;
-});
 
 socket.on('gamePhase', function(data) {
     var html = `
-	<h4>${data.question}</h4>
+	<h3>Pregunta 1: ${data.question}</h3>
 	<ul>
 	  <li><button type="button" onclick="sendAnswer('A')" id="A">${data.answers.a}</button></li>
 	  <li><button type="button" onclick="sendAnswer('B')" id="B">${data.answers.b}</button></li>

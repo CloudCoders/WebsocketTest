@@ -3,18 +3,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <head>
     <meta charset="utf-8">
-    <title>Websocket Quiz</title>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+    <title>Master Websocket Quiz</title>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
-    <script type="text/javascript" src="../static/js/game.js"></script>
+    <script type="text/javascript" src="../static/js/gameM.js"></script>
     <link rel="stylesheet" href="../static/css/mainStyle.css">
     <link href='https://fonts.googleapis.com/css?family=Oleo+Script' rel='stylesheet' type='text/css'>
 </head>
 <body>
 <h1>Websocket Quiz</h1>
+<h3>Master de la partida</h3>
 <p>
 <div id="users"></div>
-<div id="content"></div>
+<br>
+<div id="content">
+    <button type="button" onclick="startGame()" id="startButton">Empezar partida</button>
+</div>
 </p>
 </body>
 </html>

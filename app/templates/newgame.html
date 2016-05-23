@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
     <meta charset="utf-8">
     <title>Websocket Quiz</title>
-  </head>
-  <body>
+</head>
+<link rel="stylesheet" href="../static/css/mainStyle.css">
+<link href='https://fonts.googleapis.com/css?family=Oleo+Script' rel='stylesheet' type='text/css'>
+<body>
+<h1>Starting new quiz</h1>
+<div>
     <p>
-      Pass this link to your friends <a href="game/{{ roomlink }}">{{ roomlink }}</a>
-    </p>
+        Entra como master a la partida! <a href="game/{{ roomlink }}">{{ roomlink }}</a>
+    </p><br>
     <img src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=http://192.168.1.128:5000/game/{{ roomlink }}">
-  </body>
+</div>
+</body>
 </html>
