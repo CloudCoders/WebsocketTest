@@ -23,6 +23,8 @@ function onMessage(event) {
         };
         socket.send(JSON.stringify(message));
         document.getElementById('info-room').innerHTML = '<p>Id: ' + sessionId + '</p>';
+        document.getElementById('debug').innerHTML = '<p>Abrir en otro navegador:<br/>' + window.location.href + "mobile/motionController.html#sessionid=" + sessionId + '</p>';
+
         createQr();
     }
     if (json.action === "controllerId") {
@@ -33,7 +35,7 @@ function onMessage(event) {
         /* Unico metodo que usa jquery por problemas con querySelector*/
         $('#' + json.sessionId + ' .' + json.button + '').animate({
             opacity: 0.2
-        }, 100, function () {
+        }, 100, function() {
             $(this).animate({opacity: 1}, 100)
         });
     }
@@ -46,7 +48,7 @@ function createQr() {
 
 function animationOpacity(node) {
     node.style.opacity = 0.5;
-    setTimeout(function () {
+    setTimeout(function() {
         node.style.opacity = 1;
     }, 1000);
 }
