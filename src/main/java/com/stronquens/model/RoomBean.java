@@ -5,62 +5,80 @@
  */
 package com.stronquens.model;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.json.JsonObject;
-import javax.json.spi.JsonProvider;
 import javax.websocket.Session;
 
 /**
+ * Objeto Sala que relaciona y comunica los mandos con la tv
  *
  * @author stronquens
  */
 public class RoomBean {
 
+    // Sesion principal de la tv
     private Session tv = null;
+    // Array de mandos conectados a la sala
     private ArrayList<Session> controllers = new ArrayList<Session>();
-    private JsonProvider provider = JsonProvider.provider();
-    
+
+    /**
+     * Constructor que inicializa la sala con la sesion de la tv
+     *
+     * @param tv
+     */
     public RoomBean(Session tv) {
         this.tv = tv;
     }
 
-    public void addController(Session session) {
-        controllers.add(session);       
-        JsonObject message = provider.createObjectBuilder()
-                .add("action", "controllerId")
-                .add("controllerId", session.getId())
-                .add("name", "Jugador"+controllers.size())
-                .build();
-        sendToTv(message);
-    }
-
-    public Session getController(Session sesion) {
-        Session controller = null;
-        for (Session ct : controllers) {
-            if (ct.getId().equalsIgnoreCase(sesion.getId())) {
-                controller = ct;
-                break;
-            }
-        }
-        return controller;
-    }
-
-    public void removeController(Session sesion) {
-        controllers.remove(sesion);
-    }
-
+    /**
+     * Devuelve la sesion de la tv
+     *
+     * @return
+     */
     public Session getTv() {
         return tv;
     }
 
-    private void sendToTv(JsonObject message) {
-        try {
-            tv.getBasicRemote().sendText(message.toString());
-        } catch (IOException ex) {
-            Logger.getLogger(RoomBean.class.getName()).log(Level.SEVERE, null, ex);
+    /**
+     * Añade la sesion de un nuevo mando a la sala y avisa a la tv
+     *
+     * @param session
+     */
+    public void addController(Session session) {
+        controllers.add(session);
+    }
+
+    /**
+     * Devuelve el numero de mandos conectados
+     *
+     * @return
+     */
+    public int getNumControllers() {
+        return controllers.size();
+    }
+
+    /**
+     * Busca si existe un mando en esta sala
+     *
+     * @param sesion del mando a buscar
+     * @return
+     */
+    public boolean existController(Session sesion) {
+        boolean exist = false;
+        for (Session ct : controllers) {
+            if (ct.getId().equalsIgnoreCase(sesion.getId())) {
+                exist = true;
+                break;
+            }
         }
+        return exist;
+    }
+
+    /**
+     * Elimina un mando de la sala
+     *
+     * @param sesion mando a eliminar
+     */
+    public void removeController(Session sesion) {
+        controllers.remove(sesion);
     }
 }

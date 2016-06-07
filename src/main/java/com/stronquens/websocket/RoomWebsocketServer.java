@@ -1,20 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.stronquens.websocket;
 
-import com.stronquens.handlers.RoomSessionHandler;
 import com.stronquens.routes.ParamRoutes;
-import java.io.StringReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonReader;
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
 import javax.websocket.OnMessage;
@@ -40,7 +30,7 @@ public class RoomWebsocketServer {
 
     @OnClose
     public void close(Session session) {
-        paramRoutes.execute("{\"action\":\"desconnect\"}", session);
+        paramRoutes.execute("{\"action\":\"disconnect\"}", session);
     }
 
     @OnError

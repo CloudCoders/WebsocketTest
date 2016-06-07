@@ -1,12 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.stronquens.routes;
 
 import com.stronquens.handlers.RoomSessionHandler;
-import com.stronquens.websocket.RoomWebsocketServer;
 import java.io.StringReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,6 +21,12 @@ public class ParamRoutes {
     @Inject
     private RoomSessionHandler roomSessionHandler;
 
+    /**
+     * Redirige las acciones segun el contenido del mensaje recibido
+     *
+     * @param message
+     * @param session
+     */
     public void execute(String message, Session session) {
         try {
             JsonReader reader = Json.createReader(new StringReader(message));
@@ -34,9 +34,9 @@ public class ParamRoutes {
 
             switch (jsonMessage.getString("action")) {
                 case "idSession":
-                    roomSessionHandler.getIdSesion(session);
+                    roomSessionHandler.getIdSession(session);
                     break;
-                case "desconnect":
+                case "disconnect":
                     roomSessionHandler.deleteRoom(session.getId());
                     break;
                 case "createRoom":
@@ -49,7 +49,7 @@ public class ParamRoutes {
                 case "buttonPressed":
                     //String idRoom2 = jsonMessage.getString("idRoom");
                     //String button = jsonMessage.getString("button");
-                    roomSessionHandler.sendEventToRoom(session.getId(), 
+                    roomSessionHandler.sendButtonPressedToTv(session.getId(),
                             jsonMessage.getString("idRoom"), jsonMessage.getString("button"));
                     break;
             }
