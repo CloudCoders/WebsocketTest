@@ -1,0 +1,3 @@
+this.INIT = 0;
+this.ASKING_QUESTION = 1;
+this.WAITING_FOR_ANSWER = 2;
