@@ -1,5 +1,4 @@
 # Websocket Quiz
---------------------
 
 ## Instalacion
 
@@ -9,7 +8,7 @@ Primero hay que instalar las dependencias
 $ npm install
 ```
 
-**Atención**: Para iniciar el juego se necesita una base de datos *MongoDB* corriendo en el host.
+**Atención**: Para iniciar el juego se necesita una base de datos *MongoDB* corriendo en el host en el puerto estándar *27017*.
 
 Para cargar las preguntas:
 
