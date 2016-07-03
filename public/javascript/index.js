@@ -20,6 +20,9 @@ $(function() {
 		case 'answer':
 			handleAnswer(data);
 			break;
+		case 'score':
+			handleScore(data);
+			break;
 		case 'someone_buzzed':
 			handleSomeoneBuzzed(data);
 			break;
@@ -64,6 +67,19 @@ $(function() {
 					(data.correct ? "correct" : "incorrect"));
 	};
 
+	var handleScore = function(data) {
+		if(master) {
+			for(var player in data.score) {
+				var id = "score_"+player.substr(2);
+				$("#player_list li").each(function () {
+					if($(this).attr('id') == id) {
+						$(this).find('#points').html("Puntos: "+data.score[player]);
+					}
+				});
+			}
+		}
+	};
+
 	var handleTimeUp = function() {
 		$("#buzz_btn").removeAttr('disabled');
 		console.log("Time's up! Counted as incorrect");
@@ -72,7 +88,7 @@ $(function() {
 	var handleJoined = function(data) {
 		console.log(data.id + " joined the game");
 		if(master) {
-			$("#player_list").append(`<li id='score_${data.id.substring(2)}'><h3>Jugador ${data.all.length-1}</h3></li>`);
+			$("#player_list").append(`<li id='score_${data.id.substring(2)}'><h3>Jugador ${data.all.length-1} <span id='points'>Puntos: 0</span></h3></li>`);
 		}
 	};
 
@@ -109,7 +125,7 @@ $(function() {
 	var handleIdNotification = function(data) {
 		var id = data.player.substr(2);
 		var elem = document.getElementById('score_'+id);
-		elem.innerHTML = `<h3>Jugador ${data.id}</h3>`;
+		elem.innerHTML = `<h3>Jugador ${data.id} <span id='points'>Puntos: 0</span></h3>`;
 	};
 
     var handleNewQuestion = function(data) {

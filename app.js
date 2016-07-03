@@ -68,6 +68,11 @@ function registerGameCallbacks(game) {
 		socket.sockets.emit('message', data);
 	});
 
+	game.on('scoreChanged', function(score) {
+		var data = { action: 'score', score: score };
+		socket.sockets.emit('message', data);
+	});
+
 	game.on('revealAnswer', function(answer, time_up) {
 		var data = { action: 'reveal_answer', answer: answer, time_up: time_up };
 		socket.sockets.emit('message', data);

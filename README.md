@@ -13,7 +13,7 @@ $ npm install
 Para cargar las preguntas:
 
 ```
-$ mongoimport -db Quiz --collection questions --file questions.json
+$ mongoimport --db Quiz --collection questions < questions.json
 ```
 
 ## Ejecución

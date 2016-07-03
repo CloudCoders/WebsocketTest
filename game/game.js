@@ -7,6 +7,7 @@ Game = function(id){
 	this.state = gs.INIT;
     this.players = []; // session_id -> player object
 	this.lastPlayers = [];
+	this.score = {}
     this.question;
     this.current_buzz;
     this.incorrect_answers = 0;
@@ -19,6 +20,7 @@ methods = {
     addNewPlayer : function(session_id) {
 		this.lastPlayers = Array.from(this.players);
         this.players.push(session_id);
+		this.score[session_id] = 0;
         if (this.players.length > 4) {
             this.askNewQuestion();
         }
@@ -30,6 +32,7 @@ methods = {
     removePlayer : function(session_id) {
 		var self = this;
 		this.players.splice(this.players.indexOf(session_id),1);
+		delete this.score['session_id'];
 		console.log(this.players);
 		console.log(session_id);
         //this.emit('playerRemoved', this.lastPlayers.filter(x => self.players.indexOf(x) == -1), this.players);
@@ -77,11 +80,14 @@ methods = {
         var correct = this.isCorrect(data.value, this.question.correct);
         if (correct) {
             this.emit('correctAnswer', data.value);
+			this.score[player_id] += 5;
             this.askNewQuestion();
         } else {
             this.emit('incorrectAnswer', data.value);
             this.incorrectAnswer(data.value, false);
+			this.score[player_id] -= 2;
         }
+		this.emit('scoreChanged', this.score);
     },
 
     incorrectAnswer : function(wrong_answer, time_up) {
