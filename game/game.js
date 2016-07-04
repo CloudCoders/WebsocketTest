@@ -15,7 +15,8 @@ Game = function(id) {
     this.question;
     this.current_buzz;
     this.incorrect_answers = 0;
-    this.db = new mongodb.Server("localhost", 27017);
+    this.db_server = new mongodb.Server("localhost", 27017);
+    this.db_Quiz = new mongodb.Db('Quiz', this.db_server, {});
 };
 
 Game.prototype = new events.EventEmitter();
@@ -44,7 +45,7 @@ methods = {
         var self = this;
         this.question = null;
         this.incorrect_answers = 0;
-        new mongodb.Db('Quiz', this.db, {}).open(function(err, client) {
+        this.db_Quiz.open(function(err, client) {
             if (err) throw err;
             var coll = client.collection("questions");
             coll.find().toArray(function(err, docs) {
@@ -76,7 +77,6 @@ methods = {
         if (this.current_buzz != player_id) {
             throw new WrongPlayerAnsweredBuzzException();
         }
-        //this.current_buzz = null;
         clearTimeout(this.buzz_timeout);
         console.log(data);
         var correct = this.isCorrect(data.value, this.question.correct);
